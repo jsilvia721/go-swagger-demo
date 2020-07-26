@@ -26,3 +26,26 @@ definitions:
         minLength: 1
       completed:
         type: boolean
+---
+paths:
+  /:
+    get:
+      tags:
+        - todos
+      parameters:
+        - name: since
+          in: query
+          type: integer
+          format: int64
+        - name: limit
+          in: query
+          type: integer
+          format: int32
+          default: 20
+      responses:
+        200:
+          description: list the todo operations
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/item"
