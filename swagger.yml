@@ -1,16 +1,15 @@
-consumes:
-  - application/io.goswagger.examples.todo-list.v1+json
+---
+swagger: "2.0"
 info:
   description: From the todo list tutorial on goswagger.io
   title: A Todo list application
   version: 1.0.0
-paths: {}
+consumes:
+  - application/io.goswagger.examples.todo-list.v1+json
 produces:
   - application/io.goswagger.examples.todo-list.v1+json
 schemes:
   - http
-swagger: "2.0"
----
 paths:
   /:
     get:
@@ -37,7 +36,6 @@ paths:
           description: generic error response
           schema:
             $ref: "#/definitions/error"
----
 definitions:
   item:
     type: object
