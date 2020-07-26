@@ -5,6 +5,7 @@
 //  From the todo list tutorial on goswagger.io
 //  Schemes:
 //    http
+//    https
 //  Host: localhost
 //  BasePath: /
 //  Version: 1.0.0

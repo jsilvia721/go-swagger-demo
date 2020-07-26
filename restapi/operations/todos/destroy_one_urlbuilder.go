@@ -9,14 +9,14 @@ import (
 	"errors"
 	"net/url"
 	golangswaggerpaths "path"
+	"strings"
 
 	"github.com/go-openapi/swag"
 )
 
-// GetURL generates an URL for the get operation
-type GetURL struct {
-	Limit *int32
-	Since *int64
+// DestroyOneURL generates an URL for the destroy one operation
+type DestroyOneURL struct {
+	ID int64
 
 	_basePath string
 	// avoid unkeyed usage
@@ -26,7 +26,7 @@ type GetURL struct {
 // WithBasePath sets the base path for this url builder, only required when it's different from the
 // base path specified in the swagger spec.
 // When the value of the base path is an empty string
-func (o *GetURL) WithBasePath(bp string) *GetURL {
+func (o *DestroyOneURL) WithBasePath(bp string) *DestroyOneURL {
 	o.SetBasePath(bp)
 	return o
 }
@@ -34,44 +34,31 @@ func (o *GetURL) WithBasePath(bp string) *GetURL {
 // SetBasePath sets the base path for this url builder, only required when it's different from the
 // base path specified in the swagger spec.
 // When the value of the base path is an empty string
-func (o *GetURL) SetBasePath(bp string) {
+func (o *DestroyOneURL) SetBasePath(bp string) {
 	o._basePath = bp
 }
 
 // Build a url path and query string
-func (o *GetURL) Build() (*url.URL, error) {
+func (o *DestroyOneURL) Build() (*url.URL, error) {
 	var _result url.URL
 
-	var _path = "/"
+	var _path = "/{id}"
+
+	id := swag.FormatInt64(o.ID)
+	if id != "" {
+		_path = strings.Replace(_path, "{id}", id, -1)
+	} else {
+		return nil, errors.New("id is required on DestroyOneURL")
+	}
 
 	_basePath := o._basePath
 	_result.Path = golangswaggerpaths.Join(_basePath, _path)
-
-	qs := make(url.Values)
-
-	var limitQ string
-	if o.Limit != nil {
-		limitQ = swag.FormatInt32(*o.Limit)
-	}
-	if limitQ != "" {
-		qs.Set("limit", limitQ)
-	}
-
-	var sinceQ string
-	if o.Since != nil {
-		sinceQ = swag.FormatInt64(*o.Since)
-	}
-	if sinceQ != "" {
-		qs.Set("since", sinceQ)
-	}
-
-	_result.RawQuery = qs.Encode()
 
 	return &_result, nil
 }
 
 // Must is a helper function to panic when the url builder returns an error
-func (o *GetURL) Must(u *url.URL, err error) *url.URL {
+func (o *DestroyOneURL) Must(u *url.URL, err error) *url.URL {
 	if err != nil {
 		panic(err)
 	}
@@ -82,17 +69,17 @@ func (o *GetURL) Must(u *url.URL, err error) *url.URL {
 }
 
 // String returns the string representation of the path with query string
-func (o *GetURL) String() string {
+func (o *DestroyOneURL) String() string {
 	return o.Must(o.Build()).String()
 }
 
 // BuildFull builds a full url with scheme, host, path and query string
-func (o *GetURL) BuildFull(scheme, host string) (*url.URL, error) {
+func (o *DestroyOneURL) BuildFull(scheme, host string) (*url.URL, error) {
 	if scheme == "" {
-		return nil, errors.New("scheme is required for a full url on GetURL")
+		return nil, errors.New("scheme is required for a full url on DestroyOneURL")
 	}
 	if host == "" {
-		return nil, errors.New("host is required for a full url on GetURL")
+		return nil, errors.New("host is required for a full url on DestroyOneURL")
 	}
 
 	base, err := o.Build()
@@ -106,6 +93,6 @@ func (o *GetURL) BuildFull(scheme, host string) (*url.URL, error) {
 }
 
 // StringFull returns the string representation of a complete url
-func (o *GetURL) StringFull(scheme, host string) string {
+func (o *DestroyOneURL) StringFull(scheme, host string) string {
 	return o.Must(o.BuildFull(scheme, host)).String()
 }

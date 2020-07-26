@@ -15,9 +15,9 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// NewGetParams creates a new GetParams object
+// NewFindTodosParams creates a new FindTodosParams object
 // with the default values initialized.
-func NewGetParams() GetParams {
+func NewFindTodosParams() FindTodosParams {
 
 	var (
 		// initialize parameters with default values
@@ -25,16 +25,16 @@ func NewGetParams() GetParams {
 		limitDefault = int32(20)
 	)
 
-	return GetParams{
+	return FindTodosParams{
 		Limit: &limitDefault,
 	}
 }
 
-// GetParams contains all the bound params for the get operation
+// FindTodosParams contains all the bound params for the find todos operation
 // typically these are obtained from a http.Request
 //
-// swagger:parameters Get
-type GetParams struct {
+// swagger:parameters findTodos
+type FindTodosParams struct {
 
 	// HTTP Request Object
 	HTTPRequest *http.Request `json:"-"`
@@ -53,8 +53,8 @@ type GetParams struct {
 // BindRequest both binds and validates a request, it assumes that complex things implement a Validatable(strfmt.Registry) error interface
 // for simple values it will use straight method calls.
 //
-// To ensure default values, the struct must have been initialized with NewGetParams() beforehand.
-func (o *GetParams) BindRequest(r *http.Request, route *middleware.MatchedRoute) error {
+// To ensure default values, the struct must have been initialized with NewFindTodosParams() beforehand.
+func (o *FindTodosParams) BindRequest(r *http.Request, route *middleware.MatchedRoute) error {
 	var res []error
 
 	o.HTTPRequest = r
@@ -78,7 +78,7 @@ func (o *GetParams) BindRequest(r *http.Request, route *middleware.MatchedRoute)
 }
 
 // bindLimit binds and validates parameter Limit from query.
-func (o *GetParams) bindLimit(rawData []string, hasKey bool, formats strfmt.Registry) error {
+func (o *FindTodosParams) bindLimit(rawData []string, hasKey bool, formats strfmt.Registry) error {
 	var raw string
 	if len(rawData) > 0 {
 		raw = rawData[len(rawData)-1]
@@ -87,7 +87,7 @@ func (o *GetParams) bindLimit(rawData []string, hasKey bool, formats strfmt.Regi
 	// Required: false
 	// AllowEmptyValue: false
 	if raw == "" { // empty values pass all other validations
-		// Default values have been previously initialized by NewGetParams()
+		// Default values have been previously initialized by NewFindTodosParams()
 		return nil
 	}
 
@@ -101,7 +101,7 @@ func (o *GetParams) bindLimit(rawData []string, hasKey bool, formats strfmt.Regi
 }
 
 // bindSince binds and validates parameter Since from query.
-func (o *GetParams) bindSince(rawData []string, hasKey bool, formats strfmt.Registry) error {
+func (o *FindTodosParams) bindSince(rawData []string, hasKey bool, formats strfmt.Registry) error {
 	var raw string
 	if len(rawData) > 0 {
 		raw = rawData[len(rawData)-1]
