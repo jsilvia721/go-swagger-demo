@@ -25,8 +25,7 @@ func init() {
     "application/io.goswagger.examples.todo-list.v1+json"
   ],
   "schemes": [
-    "http",
-    "https"
+    "http"
   ],
   "swagger": "2.0",
   "info": {
@@ -208,8 +207,7 @@ func init() {
     "application/io.goswagger.examples.todo-list.v1+json"
   ],
   "schemes": [
-    "http",
-    "https"
+    "http"
   ],
   "swagger": "2.0",
   "info": {
