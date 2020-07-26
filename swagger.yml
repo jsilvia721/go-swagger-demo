@@ -11,32 +11,6 @@ schemes:
   - http
 swagger: "2.0"
 ---
-definitions:
-  item:
-    type: object
-    required:
-      - description
-    properties:
-      id:
-        type: integer
-        format: int64
-        readOnly: true
-      description:
-        type: string
-        minLength: 1
-      completed:
-        type: boolean
-  error:
-    type: object
-    required:
-      - message
-    properties:
-      code:
-        type: integer
-        format: int64
-      message:
-        type: string
----
 paths:
   /:
     get:
@@ -63,3 +37,29 @@ paths:
           description: generic error response
           schema:
             $ref: "#/definitions/error"
+---
+definitions:
+  item:
+    type: object
+    required:
+      - description
+    properties:
+      id:
+        type: integer
+        format: int64
+        readOnly: true
+      description:
+        type: string
+        minLength: 1
+      completed:
+        type: boolean
+  error:
+    type: object
+    required:
+      - message
+    properties:
+      code:
+        type: integer
+        format: int64
+      message:
+        type: string
