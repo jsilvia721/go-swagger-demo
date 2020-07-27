@@ -81,11 +81,11 @@ type TodoListAPI struct {
 	BearerAuthenticator func(string, security.ScopedTokenAuthentication) runtime.Authenticator
 
 	// JSONConsumer registers a consumer for the following mime types:
-	//   - application/io.goswagger.examples.todo-list.v1+json
+	//   - application/json
 	JSONConsumer runtime.Consumer
 
 	// JSONProducer registers a producer for the following mime types:
-	//   - application/io.goswagger.examples.todo-list.v1+json
+	//   - application/json
 	JSONProducer runtime.Producer
 
 	// TodosAddOneHandler sets the operation handler for the add one operation
@@ -203,8 +203,8 @@ func (o *TodoListAPI) ConsumersFor(mediaTypes []string) map[string]runtime.Consu
 	result := make(map[string]runtime.Consumer, len(mediaTypes))
 	for _, mt := range mediaTypes {
 		switch mt {
-		case "application/io.goswagger.examples.todo-list.v1+json":
-			result["application/io.goswagger.examples.todo-list.v1+json"] = o.JSONConsumer
+		case "application/json":
+			result["application/json"] = o.JSONConsumer
 		}
 
 		if c, ok := o.customConsumers[mt]; ok {
@@ -220,8 +220,8 @@ func (o *TodoListAPI) ProducersFor(mediaTypes []string) map[string]runtime.Produ
 	result := make(map[string]runtime.Producer, len(mediaTypes))
 	for _, mt := range mediaTypes {
 		switch mt {
-		case "application/io.goswagger.examples.todo-list.v1+json":
-			result["application/io.goswagger.examples.todo-list.v1+json"] = o.JSONProducer
+		case "application/json":
+			result["application/json"] = o.JSONProducer
 		}
 
 		if p, ok := o.customProducers[mt]; ok {

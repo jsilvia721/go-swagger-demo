@@ -5,9 +5,9 @@ info:
   title: A Todo list application
   version: 1.0.0
 consumes:
-  - application/io.goswagger.examples.todo-list.v1+json
+  - application/json
 produces:
-  - application/io.goswagger.examples.todo-list.v1+json
+  - application/json
 schemes:
   - http
 paths:
